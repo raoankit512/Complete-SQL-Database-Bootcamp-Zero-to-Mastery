@@ -5,7 +5,8 @@
 * Sample output: https://imgur.com/vXs4093
 * Use EXTRACT (YEAR FROM AGE(birth_date)) we will learn about this in later parts of the course
 */
-SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
+SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees
+WHERE first_name LIKE 'M%';
 
 
 /*
@@ -14,7 +15,8 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Question: How many people's name start with A and end with R?
 * Expected output: 1846
 */
-
+SELECT count(first_name) FROM employees
+WHERE first_name LIKE 'A%r'
                                                   
 /*
 * DB: Store
@@ -23,7 +25,8 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Expected output: 4211 
 */
 
-
+SELECT count(id) FROM customers
+WHERE zip::TEXT LIKE '%2%'
 
 /*
 * DB: Store
@@ -31,7 +34,8 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Question: How many people's zipcode start with 2 with the 3rd character being a 1.
 * Expected output: 109 
 */
-
+SELECT count("customerid") FROM customers
+WHERE zip::text LIKE '2_1%'
 
 /*
 * DB: Store
@@ -40,4 +44,5 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Replace null values with "No State"                                                  
 * Expected output: https://imgur.com/AVe6G4c
 */
-
+SELECT state FROM customers
+WHERE phone::text LIKE '302%'
